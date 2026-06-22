@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Dinesh Fashion Store</title>
+<head>
+    <title>Dinesh Fashion Store</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<style>
+body{
+font-family:Arial;
+margin:0;
+background:#fcfafa;
+}
+
+nav{
+background:rgb(255, 255, 255);
+color:rgb(0, 0, 0);
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
+
+nav input{
+width:300px;
+padding:8px;
+}
+
+.banner{
+text-align:center;
+padding:80px;
+background:white;
+}
+
+.banner h1{
+font-size:45px;
+}
+
+.banner button{
+padding:10px 20px;
+background:black;
+color:rgb(255, 255, 255);
+border:none;
+}
+
+.products{
+display:flex;
+justify-content:center;
+gap:20px;
+padding:30px;
+flex-wrap:wrap;
+}
+
+.card{
+background:white;
+padding:15px;
+width:220px;
+text-align:center;
+border-radius:10px;
+box-shadow:0 0 10px lightgray;
+}
+
+.card img{
+width:100%;
+border-radius:10px;
+}
+
+.card button{
+background:green;
+color:white;
+border:none;
+padding:10px;
+width:100%;
+}
+
+footer{
+background:black;
+color:white;
+text-align:center;
+padding:15px;
+margin-top:20px;
+}
+
+body{
+    font-family:Arial;
+    background:#f4f4f4;
+}
+.cart-item img{
+    width:120px;
+    border-radius:10px;
+    margin-bottom:10px;
+}
+#msg{
+    text-align:center;
+    color:green;
+    font-size:20px;
+    font-weight:bold;
+    margin:15px;
+}
+</style>
+
+</head>
+
+<body>
+
+<nav>
+    <h2>Dinesh Fashion</h2>
+    <input type="text" id="searchInput"
+placeholder="Search Products..."
+onkeyup="searchProducts()">
+
+    <div>
+        <a href="index.html">Home</a>
+        <a href="cart.html">Cart</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+<p id="msg"></p>
+
+<div class="banner">
+<h1>🔥 50% OFF Sale</h1>
+<p>Latest Fashion Collection</p>
+
+<button onclick="document.getElementById('products').scrollIntoView();">
+    Shop Now
+</button>
+</div>
+
+<div class="products" id="products">
+
+<div class="card product">
+<img src="images/tshirt.jpg">
+<h3>T-Shirt</h3>
+<p>₹499</p>
+<button onclick="addToCart('tshirt',499,'images/tshirt.jpg')">add to cart</button>
+</div>
+
+<div class="card product">
+<img src="images/shirt.jpg">
+<h3>Shirt</h3>
+<p>₹799</p>
+<button onclick="addToCart('shirt',799,'images/shirt.jpg')">add to cart</button>
+</div>
+
+<div class="card product">
+<img src="images/hoodie.jpg">
+<h3>Hoodie</h3>
+<p>₹999</p>
+<button onclick="addToCart('hoodie',999,'images/hoodie.jpg')">add to cart</button>
+</div>
+
+<div class="card product">
+<img src="images/momfit.jpg">
+<h3>Mom Fit T-Shirt</h3>
+<p>₹599</p>
+<button onclick="addToCart('momfit',599,'images/momfit.jpg')">add to cart</button>
+</div>
+
+</div>
+
+<footer>
+© 2026 Dinesh Fashion Store
+</footer>
+<script>
+
+function addToCart(name, price, image){
+
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+cart.push({
+    name:name,
+    price:price,
+    image:image
+});
+
+localStorage.setItem("cart", JSON.stringify(cart));
+
+alert("✅ " + name + " Added To Cart");
+
+setTimeout(()=>{
+document.getElementById("msg").innerHTML="";
+},2000);
+
+}
+</script>
+
+<script>
+function searchProducts(){
+
+let input =
+document.getElementById("searchInput")
+.value.toLowerCase();
+
+let products =
+document.getElementsByClassName("product");
+
+for(let i=0; i<products.length; i++){
+
+let name =
+products[i].getElementsByTagName("h3")[0]
+.innerText.toLowerCase();
+
+if(name.includes(input)){
+    products[i].style.display="block";
+}
+else{
+    products[i].style.display="none";
+}
+
+}
+}
+</script>
+
+</body>
+</html>
